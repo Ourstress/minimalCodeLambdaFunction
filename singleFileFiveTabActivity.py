@@ -114,7 +114,6 @@ def lambda_handler(event, context):
         }
       })
     </script>
-    </style>
     """
 
     indexPage=f"""
