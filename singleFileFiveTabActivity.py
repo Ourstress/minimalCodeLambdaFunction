@@ -8,6 +8,18 @@ def lambda_handler(event, context):
     with open('index.html') as file:
         indexPage = file.read()
     
+    with open('vueApp.js') as file:
+        vueApp = file.read()
+        
+    with open('doctestComponent.js') as file:
+        doctestComponent = file.read()
+    
+    ## replace "DOCETEST-COMPONENT-PLACEHOLDER" in vueApp with the script in doctest component
+    vueApp = vueApp.replace('"$$doctestComponent$$"', doctestComponent)
+    
+    # replace "$$VUE-APP-PLACEHOLDER$$" in indexPage with script from vueApp.js
+    indexPage = indexPage.replace('"$$VUE-APP-PLACEHOLDER$$"', vueApp)
+    
     method = event.get('httpMethod',{}) 
     if method == 'GET':
         return {
