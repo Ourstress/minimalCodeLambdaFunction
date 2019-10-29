@@ -44,8 +44,8 @@
         },
         methods: {
             postContents: function () {
-                // comment: leaving the gatewayUrl empty - API will post back to itself
-                const gatewayUrl = '';
+                // posting to lambda function
+                const gatewayUrl = 'https://o25djybnr2.execute-api.us-east-1.amazonaws.com/default/minimalFiveTabActivity';
                 fetch(gatewayUrl, {
                     method: "POST",
                     headers: {
