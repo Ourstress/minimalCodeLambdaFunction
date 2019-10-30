@@ -11,15 +11,17 @@ Globals:
     Timeout: 30
 
 Resources:
-  SamTestingFunction:
+  minimalCode:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Properties:
-      CodeUri: /
+      # set codeUri to nothing if lambda_function.py is in root directory
+      # if for instance, lambda_function.py in function folder, set codeUri to function/
+      CodeUri: ""
       Handler: lambda_function.lambda_handler
       Runtime: python3.7
       MemorySize: 1024
       Events:
-        SamTesting:
+        minimalCodeApi:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
           Properties:
             Path: /
