@@ -6,7 +6,10 @@ export AWS_DEFAULT_REGION=$AWS_DEFAULT_REGION
 export AWS_SESSION_TOKEN=$AWS_SESSION_TOKEN
 export APINAME="$LAMBDA_FUNC_NAME-API"
 
-zip -r ../lambda-deploy.zip *
+rm -f lambda-deploy.zip
+zip -r ./lambda-deploy.zip *
+pwd
+ls -ls .
 
 sam build
 sam package --output-template \
