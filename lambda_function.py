@@ -1,12 +1,9 @@
 # Python 3.6 runtime
-# Demo at https://o25djybnr2.execute-api.us-east-1.amazonaws.com/default/minimalFiveTabActivity
+# Demo at https://wvf931d67j.execute-api.us-east-1.amazonaws.com/default/minimalCodeFirebase
 
 import json
-import boto3
-from datetime import datetime
+import requests
 
-dynamodb = boto3.resource('dynamodb')
-    
 def lambda_handler(event, context):
 
     with open('index.html') as file:
@@ -31,14 +28,16 @@ def lambda_handler(event, context):
         if answer == solution:
             results = "correct"
 
-        table = dynamodb.Table('minimalCodeTable') 
-        log = {'solution':solution,'itemId': str(datetime.utcnow().timestamp()) ,'createdAt':int(datetime.utcnow().timestamp())}
-        table.put_item(Item=log)
+        firebaseProject = "https://minimalcode-10cd5.firebaseio.com/"
+        url = firebaseProject+"/logs.json"   
+        log = {'answers':solution} 
+        response = requests.post(url=url,data=json.dumps(log))
+        results = json.loads(response.text)
 
         return {
             "statusCode": 200,
             "headers": {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
                 },
             "body":  json.dumps({
                 "isComplete": results,
