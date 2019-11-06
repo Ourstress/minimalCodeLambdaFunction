@@ -17,12 +17,3 @@ SAM template.yaml for dynamodb
 
 - A key schema specifies the attributes that make up the primary key of a table, or the key attributes of an index.
 - The attributes in KeySchema must also be defined in the AttributeDefinitions array.
-
-## Debugging this branch
-
-Cloudformation 
-- if rollback means deployment on cloudformation failed
-- Check cloudformation events to see exactly which part caused the failure
-
-Lambda Cloudwatch logs
-- If you got error messages from post response, lambda cloudwatch logs provide clues 
