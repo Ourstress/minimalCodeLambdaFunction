@@ -1,7 +1,11 @@
-# Python 3.7 runtime
+# Python 3.6 runtime
 # Demo at https://o25djybnr2.execute-api.us-east-1.amazonaws.com/default/minimalFiveTabActivity
 
 import json
+import boto3
+from datetime import datetime
+
+dynamodb = boto3.resource('dynamodb')
     
 def lambda_handler(event, context):
 
@@ -26,6 +30,11 @@ def lambda_handler(event, context):
         results = "wrong"
         if answer == solution:
             results = "correct"
+
+        table = dynamodb.Table('loggerMinimalCode') 
+        log = {'solution':solution,'createdAt':str(datetime.utcnow().timestamp())}
+        table.put_item(Item=log)
+
         return {
             "statusCode": 200,
             "headers": {

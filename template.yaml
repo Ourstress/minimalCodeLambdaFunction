@@ -26,3 +26,17 @@ Resources:
           Properties:
             Path: /
             Method: ANY
+
+ minimalCodeTable:
+    Type: 'AWS::DynamoDB::Table'
+    Properties:
+      TableName: minimalCodeTable
+      AttributeDefinitions:
+        - AttributeName: itemId
+          AttributeType: S
+      KeySchema:
+        - AttributeName: itemId
+          KeyType: HASH
+      # ProvisionedThroughput:
+      #   ReadCapacityUnits: 5
+      #   WriteCapacityUnits: 5 
