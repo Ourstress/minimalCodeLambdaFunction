@@ -1,5 +1,9 @@
 #!/bin/sh -l
 
+# remove dupes in the case where we are deploying to amazon from our local machines
+rm -f lambda-deploy.zip
+zip -r ./lambda-deploy.zip *
+
 sam build
 sam package --output-template \
     packaged.yaml --s3-bucket "$BUCKET_NAME"
@@ -20,10 +24,6 @@ exit 0
 # export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
 # export AWS_DEFAULT_REGION=$AWS_DEFAULT_REGION
 # export AWS_SESSION_TOKEN=$AWS_SESSION_TOKEN
-
-# remove dupes in the case where we are deploying to amazon from our local machines
-# rm -f lambda-deploy.zip
-# zip -r ./lambda-deploy.zip *
 
 # pwd, ls -ls. used for debugging purposes
 # pwd
