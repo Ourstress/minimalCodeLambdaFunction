@@ -12,9 +12,8 @@ jobs:
         uses: ./
         env:
           AWS_DEFAULT_REGION: "us-east-1"
-          LAMBDA_FUNC_NAME: ${{ secrets.FUNC_NAME }}
           STACK_NAME: ${{ secrets.STACK_NAME }}
-          LAMBDA_RUNTIME: "python3.7" # See identifers at https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html
+          LAMBDA_RUNTIME: "python3.6" # See identifers at https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html
           LAMBDA_HANDLER: "lambda_function"
           LAMBDA_MEMORY: 1024
           LAMBDA_TIMEOUT: 40
