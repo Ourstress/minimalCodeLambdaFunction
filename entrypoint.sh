@@ -1,16 +1,5 @@
 #!/bin/sh -l
 
-export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
-export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
-export AWS_DEFAULT_REGION=$AWS_DEFAULT_REGION
-export AWS_SESSION_TOKEN=$AWS_SESSION_TOKEN
-export APINAME="$LAMBDA_FUNC_NAME-API"
-
-rm -f lambda-deploy.zip
-zip -r ./lambda-deploy.zip *
-pwd
-ls -ls .
-
 sam build
 sam package --output-template \
     packaged.yaml --s3-bucket "$BUCKET_NAME"
@@ -25,3 +14,17 @@ if sam deploy --template-file packaged.yaml \
 fi
     
 exit 0 
+
+# export command sets environment variable for Bash
+# export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
+# export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
+# export AWS_DEFAULT_REGION=$AWS_DEFAULT_REGION
+# export AWS_SESSION_TOKEN=$AWS_SESSION_TOKEN
+
+# remove dupes in the case where we are deploying to amazon from our local machines
+# rm -f lambda-deploy.zip
+# zip -r ./lambda-deploy.zip *
+
+# pwd, ls -ls. used for debugging purposes
+# pwd
+# ls -ls .
