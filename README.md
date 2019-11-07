@@ -6,7 +6,12 @@ Without using AWS lambda, here's [a video](https://www.youtube.com/channel/UCoMQ
 
 ## Getting started
 
-Your key files are template.yaml and deploy.sh
+1. git clone this repo --branch dynamodb or copy the files in this repo to a folder on your com
+2. install aws sam cli either on your computer or simply use cloud9 which comes with aws sam cli
+3. make sure you are in the directory with all these files (in cloud9, you can git clone this repo --branch dynamodb into your environment or upload your code to a new repo and git clone it)
+4. Edit some stuff in the files below and run the sam build / package / deploy process
+
+   Your key files are template.yaml and deploy.sh
 
 In template.yaml, change the following to your own:
 
