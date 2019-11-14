@@ -3,7 +3,7 @@ FROM python:3.6-alpine
 
 # install awscli and aws-sam-cli
 RUN apk add --no-cache --virtual .build-deps gcc musl-dev python3-dev\
-    && pip install cython awscli aws-sam-cli\
+    && pip install cython awscli aws-sam-cli pandas\
     && apk del .build-deps 
 
 # install zip
