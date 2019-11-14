@@ -1,4 +1,4 @@
-# Python 3.7 runtime
+# Python 3.6 runtime
 
 import json
 import pandas as pd
