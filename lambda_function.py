@@ -1,13 +1,17 @@
 # Python 3.7 runtime
-# Demo at https://o25djybnr2.execute-api.us-east-1.amazonaws.com/default/minimalFiveTabActivity
 
 import json
-    
+import pandas as pd
+
 def lambda_handler(event, context):
 
     with open('index.html') as file:
         indexPage = file.read()
     
+    # Just to see if pandas was imported
+    catData = {'cat': ['sylvester', 'timmy'], 'job': ['housecat', 'firefighter']}
+    df = pd.DataFrame(data=catData)
+
     method = event.get('httpMethod',{}) 
     if method == 'GET':
         return {
@@ -15,7 +19,7 @@ def lambda_handler(event, context):
             "headers": {
             'Content-Type': 'text/html',
             },
-            "body": indexPage
+            "body": df.to_html()  + indexPage
         }
         
     if method == 'POST':
